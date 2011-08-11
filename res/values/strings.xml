@@ -2693,4 +2693,8 @@ found in the list of installed applications.</string>
     <!-- Widget Picker -->
     <string name="widget_count">(%d widgets)</string>
 
+    <!-- Trackball Wake -->
+    <string name="title_use_trackball_wake">Trackball wake</string>
+    <string name="summary_on_use_trackball_wake">Trackball wake will be used</string>
+    <string name="summary_off_use_trackball_wake">Trackball wake will not be used</string>
 </resources>
