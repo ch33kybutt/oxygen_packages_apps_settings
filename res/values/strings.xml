@@ -2697,4 +2697,11 @@ found in the list of installed applications.</string>
     <string name="title_use_trackball_wake">Trackball wake</string>
     <string name="summary_on_use_trackball_wake">Trackball wake will be used</string>
     <string name="summary_off_use_trackball_wake">Trackball wake will not be used</string>
+
+    <!-- Show/Hide clock -->
+    <string name="clock_title">Clock</string>
+    <string name="title_show_clock">Show clock</string>
+    <string name="title_hide_clock">Hide the clock</string>
+    <string name="summary_on_hide_clock"> Clock is hidden</string>
+    <string name="summary_off_hide_clock"> Clock is visible</string>
 </resources>

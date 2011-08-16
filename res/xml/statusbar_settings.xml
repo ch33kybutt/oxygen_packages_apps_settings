@@ -5,6 +5,12 @@
 		android:title="@string/statusbar_battery_title"
 		android:defaultValue="false" />
 
+       <CheckBoxPreference
+                  android:key="pref_hide_clock"
+                  android:title="@string/title_hide_clock"
+                  android:summaryOn="@string/summary_on_hide_clock"
+                  android:summaryOff="@string/summary_off_hide_clock" />
+
 	<!-- Expanded View Power Widget -->
 	<PreferenceCategory android:title="@string/title_expanded_widget">
 		<CheckBoxPreference android:key="expanded_widget"

@@ -29,6 +29,8 @@ public class StatusBarActivity extends PreferenceActivity {
 
     private static final String BATTERY_PERCENTAGE = "battery_percentage";
 
+    private static final String HIDE_CLOCK_PREF = "pref_hide_clock";
+
     private static final String UI_EXP_WIDGET = "expanded_widget";
 
     private static final String UI_EXP_WIDGET_HIDE_ONCHANGE = "expanded_hide_onchange";
@@ -44,6 +46,8 @@ public class StatusBarActivity extends PreferenceActivity {
     private static final String UI_EXP_WIDGET_ORDER = "widget_order";
 
     private CheckBoxPreference mBatteryPercentage;
+
+    private CheckBoxPreference mHideClock;
 
     private CheckBoxPreference mPowerWidget;
 
@@ -73,6 +77,12 @@ public class StatusBarActivity extends PreferenceActivity {
 
         mBatteryPercentage.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.BATTERY_PERCENTAGE, 0) == 1));
+
+       mHideClock = (CheckBoxPreference) prefSet
+               .findPreference(HIDE_CLOCK_PREF);
+
+       mHideClock.setChecked(Settings.System.getInt(getContentResolver(), 
+               Settings.System.HIDE_CLOCK, 0) == 1);
 
         /* Expanded View Power Widget */
         mPowerWidget = (CheckBoxPreference) prefSet.findPreference(UI_EXP_WIDGET);
@@ -107,6 +117,12 @@ public class StatusBarActivity extends PreferenceActivity {
             Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE,
                     value ? 1 : 0);
         }
+
+        if (preference == mHideClock) {
+               value = mHideClock.isChecked();
+               Settings.System.putInt(getContentResolver(), Settings.System.HIDE_CLOCK,
+                    value ? 1 : 0);
+       }
 
         if (preference == mPowerPicker) {
             startActivity(mPowerPicker.getIntent());
