@@ -46,4 +46,12 @@
 		android:title="@string/title_use_trackball_wake"
 		android:summaryOn="@string/summary_on_use_trackball_wake"
 		android:summaryOff="@string/summary_off_use_trackball_wake" />
+
+    	<PreferenceScreen android:key="trackball_notifications"
+                android:title="@string/trackball_title" android:summary="@string/trackball_summary">
+            <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="com.android.settings"
+                android:targetClass="com.android.settings.TrackballNotificationActivity" />
+        </PreferenceScreen>
+
 </PreferenceScreen>

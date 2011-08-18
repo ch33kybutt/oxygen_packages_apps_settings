@@ -892,6 +892,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".TrackballNotificationActivity"
+            android:label="@string/trackball_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
     </application>
 </manifest>

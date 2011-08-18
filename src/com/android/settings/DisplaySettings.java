@@ -46,11 +46,13 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final String KEY_ANIMATIONS = "animations";
     private static final String KEY_ACCELEROMETER = "accelerometer";
     private static final String TRACKBALL_WAKE_PREF = "pref_trackball_wake";
+    private static final String NOTIFICATION_TRACKBALL = "trackball_notifications";
 
     private ListPreference mAnimations;
     private CheckBoxPreference mAccelerometer;
     private CheckBoxPreference mTrackballWakePref;
     private float[] mAnimationScales;
+    private PreferenceScreen mTrackballScreen;;
 
     private IWindowManager mWindowManager;
 
@@ -78,6 +80,8 @@ public class DisplaySettings extends PreferenceActivity implements
 	mTrackballWakePref = (CheckBoxPreference) findPreference(TRACKBALL_WAKE_PREF);
 	mTrackballWakePref.setPersistent(false);
 
+        mTrackballScreen = (PreferenceScreen) findPreference(NOTIFICATION_TRACKBALL);
+	// mTrackballScreen.setPersistent(false);
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -180,6 +184,8 @@ public class DisplaySettings extends PreferenceActivity implements
             Settings.System.putInt(getContentResolver(),
 		    Settings.System.TRACKBALL_WAKE_SCREEN,
 		    mTrackballWakePref.isChecked() ? 1 : 0);
+        } else if (preference == mTrackballScreen) {
+            startActivity(mTrackballScreen.getIntent());
         }
         return true;
     }
