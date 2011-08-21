@@ -2704,4 +2704,8 @@ found in the list of installed applications.</string>
     <string name="title_hide_clock">Hide the clock</string>
     <string name="summary_on_hide_clock"> Clock is hidden</string>
     <string name="summary_off_hide_clock"> Clock is visible</string>
+
+    <!-- User interface : 180 degree rotation -->
+    <string name="pref_rotate_180_title">Rotate 180 degrees</string>
+    <string name="pref_rotate_180_summary">Allows additional 180 degree rotation when auto-rotate screen is activated</string>
 </resources>
