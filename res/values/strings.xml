@@ -2708,4 +2708,9 @@ found in the list of installed applications.</string>
     <!-- User interface : 180 degree rotation -->
     <string name="pref_rotate_180_title">Rotate 180 degrees</string>
     <string name="pref_rotate_180_summary">Allows additional 180 degree rotation when auto-rotate screen is activated</string>
+
+    <!-- Trackball Unlock -->
+    <string name="title_trackball_unlock">Trackball unlock</string>
+    <string name="summary_on_general_trackball_unlock">Trackball unlock will be used</string>
+    <string name="summary_off_general_trackball_unlock">Trackball unlock will not be used</string>
 </resources>

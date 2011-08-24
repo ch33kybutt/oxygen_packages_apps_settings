@@ -48,13 +48,15 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final String TRACKBALL_WAKE_PREF = "pref_trackball_wake";
     private static final String NOTIFICATION_TRACKBALL = "trackball_notifications";
     private static final String ROTATE_180_PREF = "pref_rotate_180";
+    private static final String TRACKBALL_UNLOCK_PREF = "pref_trackball_unlock";
 
     private ListPreference mAnimations;
     private CheckBoxPreference mAccelerometer;
     private CheckBoxPreference mRotate180Pref;
     private CheckBoxPreference mTrackballWakePref;
+    private CheckBoxPreference mTrackballUnlockPref;
     private float[] mAnimationScales;
-    private PreferenceScreen mTrackballScreen;;
+    private PreferenceScreen mTrackballScreen;
 
     private IWindowManager mWindowManager;
 
@@ -88,6 +90,10 @@ public class DisplaySettings extends PreferenceActivity implements
 
         mTrackballScreen = (PreferenceScreen) findPreference(NOTIFICATION_TRACKBALL);
 	// mTrackballScreen.setPersistent(false);
+
+        /* Trackball Unlock */
+        mTrackballUnlockPref = (CheckBoxPreference) findPreference(TRACKBALL_UNLOCK_PREF);
+        mTrackballUnlockPref.setPersistent(false);
 
     }
 
@@ -168,6 +174,10 @@ public class DisplaySettings extends PreferenceActivity implements
 	mTrackballWakePref.setChecked(Settings.System.getInt(
 		getContentResolver(),
 		Settings.System.TRACKBALL_WAKE_SCREEN, 0) == 1);
+        mTrackballUnlockPref.setChecked(Settings.System.getInt(
+                getContentResolver(),
+                Settings.System.TRACKBALL_UNLOCK_SCREEN, 0) == 1);
+		
     }
 
     private void updateAnimationsSummary(Object value) {
@@ -197,6 +207,10 @@ public class DisplaySettings extends PreferenceActivity implements
             Settings.System.putInt(getContentResolver(),
 		    Settings.System.TRACKBALL_WAKE_SCREEN,
 		    mTrackballWakePref.isChecked() ? 1 : 0);
+        } else if (preference == mTrackballUnlockPref) {
+            Settings.System.putInt(getContentResolver(), 
+                    Settings.System.TRACKBALL_UNLOCK_SCREEN,
+                    mTrackballUnlockPref.isChecked() ? 1 : 0);
         } else if (preference == mTrackballScreen) {
             startActivity(mTrackballScreen.getIntent());
         }

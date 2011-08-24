@@ -47,13 +47,22 @@
                 android:entries="@array/screen_timeout_entries"
                 android:entryValues="@array/screen_timeout_values" />
 
-	<CheckBoxPreference android:key="pref_trackball_wake"
+	<CheckBoxPreference
+	        android:key="pref_trackball_wake"
 		android:title="@string/title_use_trackball_wake"
 		android:summaryOn="@string/summary_on_use_trackball_wake"
 		android:summaryOff="@string/summary_off_use_trackball_wake" />
 
-    	<PreferenceScreen android:key="trackball_notifications"
-                android:title="@string/trackball_title" android:summary="@string/trackball_summary">
+	<CheckBoxPreference
+		android:key="pref_trackball_unlock"
+		android:title="@string/title_trackball_unlock"
+		android:summaryOn="@string/summary_on_general_trackball_unlock"
+		android:summaryOff="@string/summary_off_general_trackball_unlock" />
+
+    	<PreferenceScreen
+    	        android:key="trackball_notifications"
+                android:title="@string/trackball_title" 
+                android:summary="@string/trackball_summary">
             <intent android:action="android.intent.action.MAIN"
                 android:targetPackage="com.android.settings"
                 android:targetClass="com.android.settings.TrackballNotificationActivity" />
