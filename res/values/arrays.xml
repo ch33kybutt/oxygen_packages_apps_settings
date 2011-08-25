@@ -418,14 +418,14 @@
         <item>notsilent</item>
     </string-array>
 
-   <string-array name="entries_brightness_widget" formatted="false">
-        <item>Auto/Dim/40%%/100%%</item>
-        <item>Auto/Dim/25%%/50%%/75%%/100%%</item>
-        <item>Auto/25%%/100%%</item>
-        <item>Dim/100%%</item>
+    <string-array name="entries_brightness_widget" formatted="false">
+        <item>Auto/Dim/40/100</item>
+        <item>Auto/Dim/25/50/75/100</item>
+        <item>Auto/25/100</item>
+        <item>Dim/100</item>
     </string-array>
 
-   <string-array name="values_brightness_widget" translatable="false">
+    <string-array name="values_brightness_widget" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
