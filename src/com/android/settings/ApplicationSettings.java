@@ -32,6 +32,7 @@ public class ApplicationSettings extends PreferenceActivity implements
         DialogInterface.OnClickListener {
     
     private static final String KEY_TOGGLE_INSTALL_APPLICATIONS = "toggle_install_applications";
+    private static final String KILL_APP_LONGPRESS_BACK = "kill_app_longpress_back";
     private static final String KEY_APP_INSTALL_LOCATION = "app_install_location";
     private static final String KEY_QUICK_LAUNCH = "quick_launch";
 
@@ -45,6 +46,7 @@ public class ApplicationSettings extends PreferenceActivity implements
     private static final String APP_INSTALL_AUTO_ID = "auto";
     
     private CheckBoxPreference mToggleAppInstallation;
+    private CheckBoxPreference mKillAppLongpressBack;
 
     private ListPreference mInstallLocation;
 
@@ -58,6 +60,8 @@ public class ApplicationSettings extends PreferenceActivity implements
 
         mToggleAppInstallation = (CheckBoxPreference) findPreference(KEY_TOGGLE_INSTALL_APPLICATIONS);
         mToggleAppInstallation.setChecked(isNonMarketAppsAllowed());
+
+        mKillAppLongpressBack = (CheckBoxPreference) findPreference(KILL_APP_LONGPRESS_BACK);
 
         mInstallLocation = (ListPreference) findPreference(KEY_APP_INSTALL_LOCATION);
         // Is app default install location set?
@@ -81,6 +85,14 @@ public class ApplicationSettings extends PreferenceActivity implements
             Preference quickLaunchSetting = findPreference(KEY_QUICK_LAUNCH);
             getPreferenceScreen().removePreference(quickLaunchSetting);
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        mKillAppLongpressBack.setChecked(Settings.Secure.getInt(getContentResolver(),
+                Settings.Secure.KILL_APP_LONGPRESS_BACK, 0) != 0);
     }
 
     protected void handleUpdateAppInstallLocation(final String value) {
@@ -118,6 +130,9 @@ public class ApplicationSettings extends PreferenceActivity implements
             } else {
                 setNonMarketAppsAllowed(false);
             }
+        } else if (preference == mKillAppLongpressBack) {
+            Settings.Secure.putInt(getContentResolver(), Settings.Secure.KILL_APP_LONGPRESS_BACK,
+                    mKillAppLongpressBack.isChecked() ? 1 : 0);
         }
 
         return super.onPreferenceTreeClick(preferenceScreen, preference);
