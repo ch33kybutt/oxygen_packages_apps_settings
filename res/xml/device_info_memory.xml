@@ -16,6 +16,11 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <CheckBoxPreference android:key="pref_switch_storage"
+            android:title="@string/pref_switch_storage_title"
+            android:summaryOn="@string/pref_switch_storage_summary_on"
+            android:summaryOff="@string/pref_switch_storage_summary_off" />
+
     <PreferenceCategory android:key="memory_sd"
             android:title="@string/sd_memory">
         <Preference android:key="memory_sd_size" 

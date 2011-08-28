@@ -37,6 +37,7 @@ import android.os.StatFs;
 import android.os.SystemProperties;
 import android.os.storage.StorageManager;
 import android.os.storage.StorageEventListener;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
@@ -77,6 +78,8 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
 
     private static final String MEMORY_INTERNAL_AVAIL = "memory_internal_avail";
 
+    private static final String SWITCH_STORAGE_PREF = "pref_switch_storage";
+
     private static final int DLG_CONFIRM_UNMOUNT = 1;
     private static final int DLG_ERROR_UNMOUNT = 2;
 
@@ -89,6 +92,8 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
 
     private Preference mIntSize;
     private Preference mIntAvail;
+
+    private CheckBoxPreference mSwitchStoragePref;
 
     private HashMap<String, String> mountToggles = new HashMap<String, String>();
     private HashMap<String, String> formatToggles = new HashMap<String, String>();
@@ -173,6 +178,12 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
             formatToggles.put(MEMORY_SD_FORMAT + path, path);
         }
 
+        mSwitchStoragePref = (CheckBoxPreference)findPreference(SWITCH_STORAGE_PREF);
+        mSwitchStoragePref.setChecked((SystemProperties.getInt("persist.sys.vold.switchexternal", 0) == 0));
+
+        if (SystemProperties.get("ro.vold.switchablepair","").equals("")) {
+            getPreferenceScreen().removePreference(mSwitchStoragePref);
+        }
     }
     
     @Override
@@ -248,6 +259,10 @@ public class Memory extends PreferenceActivity implements OnCancelListener {
             intent.putExtra("path", path);
             intent.setClass(this, com.android.settings.MediaFormat.class);
             startActivity(intent);
+            return true;
+        } else if (preference == mSwitchStoragePref) {
+            SystemProperties.set("persist.sys.vold.switchexternal",
+                mSwitchStoragePref.isChecked() ? "0" : "1");
             return true;
         }
         
