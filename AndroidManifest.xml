@@ -892,8 +892,31 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-        <activity android:name=".TrackballNotificationActivity"
+        <receiver android:name=".LEDNotificationReceiver" android:enabled="true">
+            <intent-filter>
+                <action android:name="android.app.NotificationManager.ACTION_NOTIFY" />
+            </intent-filter>
+        </receiver>
+        <activity android:name=".NotificationActivity"
             android:label="@string/trackball_title">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".CategoryActivity"
+            android:label="@string/trackball_category_screen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PackageSettingsActivity"
+            android:label="@string/group_applications">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdvancedActivity"
+            android:label="@string/trackball_advanced_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
