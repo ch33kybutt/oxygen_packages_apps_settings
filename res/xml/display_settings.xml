@@ -30,7 +30,8 @@
         <!-- 180 degree rotation toggle -->
         <CheckBoxPreference android:key="pref_rotate_180"
             android:title="@string/pref_rotate_180_title"
-            android:summary="@string/pref_rotate_180_summary" />
+            android:summary="@string/pref_rotate_180_summary"
+            android:dependency="accelerometer" />
 
         <ListPreference
             android:key="animations"
@@ -58,14 +59,5 @@
 		android:title="@string/title_trackball_unlock"
 		android:summaryOn="@string/summary_on_general_trackball_unlock"
 		android:summaryOff="@string/summary_off_general_trackball_unlock" />
-
-    	<PreferenceScreen
-    	        android:key="trackball_notifications"
-                android:title="@string/trackball_title" 
-                android:summary="@string/trackball_summary">
-            <intent android:action="android.intent.action.MAIN"
-                android:targetPackage="com.android.settings"
-                android:targetClass="com.android.settings.NotificationActivity" />
-        </PreferenceScreen>
 
 </PreferenceScreen>

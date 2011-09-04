@@ -46,7 +46,6 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final String KEY_ANIMATIONS = "animations";
     private static final String KEY_ACCELEROMETER = "accelerometer";
     private static final String TRACKBALL_WAKE_PREF = "pref_trackball_wake";
-    private static final String NOTIFICATION_TRACKBALL = "trackball_notifications";
     private static final String ROTATE_180_PREF = "pref_rotate_180";
     private static final String TRACKBALL_UNLOCK_PREF = "pref_trackball_unlock";
 
@@ -56,7 +55,6 @@ public class DisplaySettings extends PreferenceActivity implements
     private CheckBoxPreference mTrackballWakePref;
     private CheckBoxPreference mTrackballUnlockPref;
     private float[] mAnimationScales;
-    private PreferenceScreen mTrackballScreen;
 
     private IWindowManager mWindowManager;
 
@@ -87,9 +85,6 @@ public class DisplaySettings extends PreferenceActivity implements
         /* Trackball Wake */
 	mTrackballWakePref = (CheckBoxPreference) findPreference(TRACKBALL_WAKE_PREF);
 	mTrackballWakePref.setPersistent(false);
-
-        mTrackballScreen = (PreferenceScreen) findPreference(NOTIFICATION_TRACKBALL);
-	// mTrackballScreen.setPersistent(false);
 
         /* Trackball Unlock */
         mTrackballUnlockPref = (CheckBoxPreference) findPreference(TRACKBALL_UNLOCK_PREF);
@@ -211,8 +206,6 @@ public class DisplaySettings extends PreferenceActivity implements
             Settings.System.putInt(getContentResolver(), 
                     Settings.System.TRACKBALL_UNLOCK_SCREEN,
                     mTrackballUnlockPref.isChecked() ? 1 : 0);
-        } else if (preference == mTrackballScreen) {
-            startActivity(mTrackballScreen.getIntent());
         }
         return true;
     }

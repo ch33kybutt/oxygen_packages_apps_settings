@@ -16,6 +16,8 @@
 
 package com.android.settings;
 
+import com.android.settings.R;
+
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
 import android.content.BroadcastReceiver;
@@ -62,6 +64,9 @@ public class SoundSettings extends PreferenceActivity implements
     private static final String VALUE_VIBRATE_ONLY_SILENT = "silent";
     private static final String VALUE_VIBRATE_UNLESS_SILENT = "notsilent";
 
+    private static final String NOTIFICATION_TRACKBALL = "trackball_notifications";
+    private static final String QUIET_HOURS = "sound_category_quiet_hours";    
+
     private CheckBoxPreference mSilent;
 
     /*
@@ -77,6 +82,9 @@ public class SoundSettings extends PreferenceActivity implements
     private CheckBoxPreference mHapticFeedback;
     private CheckBoxPreference mNotificationPulse;
     private CheckBoxPreference mLockSounds;
+
+    private PreferenceScreen mTrackballScreen;
+    private PreferenceScreen mQuietHours;
 
     private AudioManager mAudioManager;
 
@@ -151,6 +159,9 @@ public class SoundSettings extends PreferenceActivity implements
                 Log.e(TAG, Settings.System.NOTIFICATION_LIGHT_PULSE + " not found");
             }
         }
+
+        mTrackballScreen = (PreferenceScreen) findPreference(NOTIFICATION_TRACKBALL);
+        mQuietHours = (PreferenceScreen) findPreference(QUIET_HOURS);
 
     }
 
@@ -312,6 +323,10 @@ public class SoundSettings extends PreferenceActivity implements
             boolean value = mNotificationPulse.isChecked();
             Settings.System.putInt(getContentResolver(),
                     Settings.System.NOTIFICATION_LIGHT_PULSE, value ? 1 : 0);
+        } else if (preference == mTrackballScreen) {
+            startActivity(mTrackballScreen.getIntent());
+        } else if (preference == mQuietHours) {
+            startActivity(mQuietHours.getIntent());
         }
 
         return true;

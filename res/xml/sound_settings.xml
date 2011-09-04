@@ -69,11 +69,28 @@
             android:persistent="false"
             android:ringtoneType="notification" />
 
+    <PreferenceScreen
+            android:key="sound_category_quiet_hours"
+            android:title="@string/sound_category_quiet_hours_title">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.android.settings"
+            android:targetClass="com.android.settings.SoundQuietHoursActivity" />
+    </PreferenceScreen>
+
     <CheckBoxPreference
             android:key="notification_pulse"
             android:title="@string/notification_pulse_title"
             android:summary="@string/notification_pulse_summary"
             android:persistent="false" />
+
+    <PreferenceScreen
+            android:key="trackball_notifications"
+            android:title="@string/trackball_title" 
+            android:summary="@string/trackball_summary">
+        <intent android:action="android.intent.action.MAIN"
+            android:targetPackage="com.android.settings"
+            android:targetClass="com.android.settings.NotificationActivity" />
+    </PreferenceScreen>
 
     <PreferenceCategory
             android:title="@string/sound_category_feedback_title"/>
