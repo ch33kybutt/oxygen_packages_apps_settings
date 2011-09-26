@@ -21,7 +21,7 @@
     <!-- Status bar strings -->
     <string name="statusbar_settings">Status bar</string>
     <string name="statusbar_settings_title">Status bar settings</string>
-    <string name="statusbar_battery_title">Battery percentage</string>
+    <string name="statusbar_battery_title">Battery style</string>
 
     <!-- Expanded View Power Widget -->
     <string name="title_widget_buttons">Expanded View Widget</string>
