@@ -105,7 +105,7 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
                 Settings.System.EXPANDED_HIDE_INDICATOR, 0) == 1));
 
         int statusBarBattery = Settings.System.getInt(getContentResolver(),
-                Settings.System.BATTERY_PERCENTAGE, 0);
+                Settings.System.BATTERY_STYLE, 0);
         mBatteryStyle.setValue(String.valueOf(statusBarBattery));
         mBatteryStyle.setOnPreferenceChangeListener(this);
     }
@@ -113,7 +113,7 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
     public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mBatteryStyle) {
             int statusBarBattery = Integer.valueOf((String) newValue);
-            Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_PERCENTAGE,
+            Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_STYLE,
                     statusBarBattery);
             return true;
         }
