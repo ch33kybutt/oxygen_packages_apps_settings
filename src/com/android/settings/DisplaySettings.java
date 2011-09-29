@@ -16,6 +16,8 @@
 
 package com.android.settings;
 
+import com.android.settings.R;
+
 import static android.provider.Settings.System.SCREEN_OFF_TIMEOUT;
 
 import java.util.ArrayList;
@@ -24,11 +26,14 @@ import android.app.admin.DevicePolicyManager;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Parcel;
 import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceScreen;
 import android.provider.Settings;
@@ -48,8 +53,10 @@ public class DisplaySettings extends PreferenceActivity implements
     private static final String TRACKBALL_WAKE_PREF = "pref_trackball_wake";
     private static final String ROTATE_180_PREF = "pref_rotate_180";
     private static final String TRACKBALL_UNLOCK_PREF = "pref_trackball_unlock";
+    private static final String RENDER_EFFECT_PREF = "pref_render_effect";
 
     private ListPreference mAnimations;
+    private ListPreference mRenderEffectPref;
     private CheckBoxPreference mAccelerometer;
     private CheckBoxPreference mRotate180Pref;
     private CheckBoxPreference mTrackballWakePref;
@@ -90,6 +97,10 @@ public class DisplaySettings extends PreferenceActivity implements
         mTrackballUnlockPref = (CheckBoxPreference) findPreference(TRACKBALL_UNLOCK_PREF);
         mTrackballUnlockPref.setPersistent(false);
 
+        /* Render Effect */
+        mRenderEffectPref = (ListPreference) findPreference(RENDER_EFFECT_PREF);
+        mRenderEffectPref.setOnPreferenceChangeListener(this);
+        updateFlingerOptions();
     }
 
     private void disableUnusableTimeouts(ListPreference screenTimeoutPreference) {
@@ -188,6 +199,51 @@ public class DisplaySettings extends PreferenceActivity implements
         }
     }
 
+    // Taken from DevelopmentSettings
+    private void updateFlingerOptions() {
+        // magic communication with surface flinger.
+        try {
+            IBinder flinger = ServiceManager.getService("SurfaceFlinger");
+            if (flinger != null) {
+                Parcel data = Parcel.obtain();
+                Parcel reply = Parcel.obtain();
+                data.writeInterfaceToken("android.ui.ISurfaceComposer");
+                flinger.transact(1010, data, reply, 0);
+                int v;
+                v = reply.readInt();
+                // mShowCpuCB.setChecked(v != 0);
+                v = reply.readInt();
+                // mEnableGLCB.setChecked(v != 0);
+                v = reply.readInt();
+                // mShowUpdatesCB.setChecked(v != 0);
+                v = reply.readInt();
+                // mShowBackgroundCB.setChecked(v != 0);
+
+                v = reply.readInt();
+                mRenderEffectPref.setValue(String.valueOf(v));
+
+                reply.recycle();
+                data.recycle();
+            }
+        } catch (RemoteException ex) {
+        }
+
+    }
+
+    private void writeRenderEffect(int id) {
+        try {
+            IBinder flinger = ServiceManager.getService("SurfaceFlinger");
+            if (flinger != null) {
+                Parcel data = Parcel.obtain();
+                data.writeInterfaceToken("android.ui.ISurfaceComposer");
+                data.writeInt(id);
+                flinger.transact(1014, data, null, 0);
+                data.recycle();
+            }
+        } catch (RemoteException ex) {
+        }
+    }
+
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         if (preference == mAccelerometer) {
@@ -229,8 +285,8 @@ public class DisplaySettings extends PreferenceActivity implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist animation setting", e);
             }
-
         }
+
         if (KEY_SCREEN_TIMEOUT.equals(key)) {
             int value = Integer.parseInt((String) objValue);
             try {
@@ -239,6 +295,11 @@ public class DisplaySettings extends PreferenceActivity implements
             } catch (NumberFormatException e) {
                 Log.e(TAG, "could not persist screen timeout setting", e);
             }
+        }
+
+        if (preference == mRenderEffectPref) {
+            writeRenderEffect(Integer.valueOf((String) objValue));
+            return true;
         }
 
         return true;

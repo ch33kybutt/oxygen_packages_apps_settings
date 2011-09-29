@@ -18,6 +18,11 @@
         android:title="@string/display_settings"
         xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
 
+        <!-- Render effect -->
+        <ListPreference android:key="pref_render_effect" android:dialogTitle="@string/pref_render_effect_title"
+            android:title="@string/pref_render_effect_title" android:summary="@string/pref_render_effect_summary"
+	    android:entries="@array/entries_render_effect" android:entryValues="@array/values_render_effect" />
+
         <com.android.settings.BrightnessPreference
                 android:key="brightness"
                 android:title="@string/brightness"
