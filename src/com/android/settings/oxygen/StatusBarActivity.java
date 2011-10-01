@@ -129,11 +129,12 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
                value = mHideClock.isChecked();
                Settings.System.putInt(getContentResolver(), Settings.System.HIDE_CLOCK,
                     value ? 1 : 0);
-       }
+        }
 
         if (preference == mPowerPicker) {
             startActivity(mPowerPicker.getIntent());
         }
+
         if (preference == mPowerOrder) {
             startActivity(mPowerOrder.getIntent());
         }
