@@ -2775,6 +2775,8 @@ found in the list of installed applications.</string>
     <!-- Widget Picker -->
     <string name="widget_count">(%d widgets)</string>
 
+    <string name="device_settings_title">Device settings</string>
+
     <!-- Switch storage mountpoints -->
     <string name="pref_switch_storage_title">Use internal storage</string>
     <string name="pref_switch_storage_summary_on">Using expanded internal storage for apps and media</string>
