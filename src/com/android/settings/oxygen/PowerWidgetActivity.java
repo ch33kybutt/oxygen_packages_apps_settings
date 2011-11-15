@@ -22,6 +22,7 @@ import com.android.settings.PowerWidgetUtil;
 import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
+import android.preference.MultiSelectListPreference;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceChangeListener;
 import android.preference.PreferenceActivity;
@@ -49,10 +50,10 @@ public class PowerWidgetActivity extends PreferenceActivity implements OnPrefere
 
     private HashMap<CheckBoxPreference, String> mCheckBoxPrefs = new HashMap<CheckBoxPreference, String>();
 
-    ListPreference mBrightnessMode;
+    MultiSelectListPreference mBrightnessMode;
     ListPreference mNetworkMode;
     ListPreference mScreentimeoutMode;
-    ListPreference mRingMode;
+    MultiSelectListPreference mRingMode;
     ListPreference mFlashMode;
 
     @Override
@@ -63,13 +64,15 @@ public class PowerWidgetActivity extends PreferenceActivity implements OnPrefere
 
         PreferenceScreen prefSet = getPreferenceScreen();
 
-        mBrightnessMode = (ListPreference) prefSet.findPreference(EXP_BRIGHTNESS_MODE);
+        mBrightnessMode = (MultiSelectListPreference) prefSet.findPreference(EXP_BRIGHTNESS_MODE);
+        mBrightnessMode.setValue(Settings.System.getString(getContentResolver(), Settings.System.EXPANDED_BRIGHTNESS_MODE));
         mBrightnessMode.setOnPreferenceChangeListener(this);
         mNetworkMode = (ListPreference) prefSet.findPreference(EXP_NETWORK_MODE);
         mNetworkMode.setOnPreferenceChangeListener(this);
         mScreentimeoutMode = (ListPreference) prefSet.findPreference(EXP_SCREENTIMEOUT_MODE);
         mScreentimeoutMode.setOnPreferenceChangeListener(this);
-        mRingMode = (ListPreference) prefSet.findPreference(EXP_RING_MODE);
+        mRingMode = (MultiSelectListPreference) prefSet.findPreference(EXP_RING_MODE);
+        mRingMode.setValue(Settings.System.getString(getContentResolver(), Settings.System.EXPANDED_RING_MODE));
         mRingMode.setOnPreferenceChangeListener(this);
         mFlashMode = (ListPreference) prefSet.findPreference(EXP_FLASH_MODE);
         mFlashMode.setOnPreferenceChangeListener(this);
@@ -171,16 +174,18 @@ public class PowerWidgetActivity extends PreferenceActivity implements OnPrefere
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        int value = Integer.valueOf((String)newValue);
         if(preference == mBrightnessMode) {
-            Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_BRIGHTNESS_MODE, value);
+            Settings.System.putString(getContentResolver(), Settings.System.EXPANDED_BRIGHTNESS_MODE, (String) newValue);
         } else if(preference == mNetworkMode) {
+            int value = Integer.valueOf((String)newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_NETWORK_MODE, value);
         } else if(preference == mScreentimeoutMode) {
+            int value = Integer.valueOf((String)newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_SCREENTIMEOUT_MODE, value);
         } else if(preference == mRingMode) {
-            Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_RING_MODE, value);
+            Settings.System.putString(getContentResolver(), Settings.System.EXPANDED_RING_MODE, (String) newValue);
         } else if(preference == mFlashMode) {
+            int value = Integer.valueOf((String)newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_FLASH_MODE, value);
         }
         return true;

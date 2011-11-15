@@ -435,11 +435,13 @@
         <item>notsilent</item>
     </string-array>
 
-    <string-array name="entries_brightness_widget" formatted="false">
-        <item>Auto/Dim/40%/100%</item>
-        <item>Auto/Dim/25%/50%/75%/100%</item>
-        <item>Auto/25%/100%</item>
-        <item>Dim/100%</item>
+	<string-array name="entries_brightness_widget" formatted="false" translatable="false">
+        <item>@string/cm_brightness_mode_auto</item>
+        <item>@string/cm_brightness_mode_dim</item>
+        <item>25%</item>
+        <item>50%</item>
+        <item>75%</item>
+        <item>100%</item>
     </string-array>
 
     <string-array name="values_brightness_widget" translatable="false">
@@ -447,11 +449,13 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
+        <item>4</item>
+        <item>5</item>
     </string-array>
 
     <string-array name="entries_network_widget">
-        <item>2G/3G+2G</item>  
-        <item>2G/3G Only</item>   
+        <item>2G/3G+2G</item>
+        <item>2G/3G Only</item>
         <item>2G/3G Only/3G+2G</item>
     </string-array>
 
@@ -472,13 +476,10 @@
     </string-array>
 
     <string-array name="entries_ring_widget" translatable="false">
-        <item>@string/cm_sound_mode_soundVib_vib</item>
-        <item>@string/cm_sound_mode_sound_vib</item>
-        <item>@string/cm_sound_mode_sound_silent</item>
-        <item>@string/cm_sound_mode_soundVib_vib_silent</item>
-        <item>@string/cm_sound_mode_sound_vib_silent</item>
-        <item>@string/cm_sound_mode_soundVib_sound_vib_silent</item>
-        <item>@string/cm_sound_mode_vib_silent</item>
+        <item>@string/cm_sound_mode_silent</item>
+        <item>@string/cm_sound_mode_vibrate</item>
+        <item>@string/cm_sound_mode_sound</item>
+        <item>@string/cm_sound_mode_soundVibrate</item>
     </string-array>
 
     <string-array name="values_ring_widget" translatable="false">
@@ -486,9 +487,6 @@
         <item>1</item>
         <item>2</item>
         <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
     </string-array>
 
     <string-array name="entries_flash_widget">
@@ -653,5 +651,17 @@
         <item>8</item>
         <item>9</item>
         <item>10</item>
+    </string-array>
+
+    <string-array name="haptic_feedback_entries">
+        <item>Global Settings</item>
+        <item>On</item>
+        <item>Off</item>
+    </string-array>
+
+    <string-array name="haptic_feedback_values" translatable="false">
+        <item>2</item>
+        <item>1</item>
+        <item>0</item>
     </string-array>
 </resources>

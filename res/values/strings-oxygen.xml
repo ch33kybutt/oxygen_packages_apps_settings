@@ -60,21 +60,22 @@
     <string name="title_button_modes">Button modes</string>
     <string name="pref_brightness_mode_title">Brightness modes</string>
     <string name="pref_brightness_mode_summary">Choose how the brightness button changes modes</string>
+    <string name="cm_brightness_mode_auto">Auto</string>
+    <string name="cm_brightness_mode_dim">Dim</string>
     <string name="pref_network_mode_title">Network modes</string>
     <string name="pref_network_mode_summary">Choose how the NetworkMode button changes modes</string>
     <string name="pref_screentimeout_mode_title">Screentimeout modes</string>
     <string name="pref_screentimeout_mode_summary">Choose how the Screentimeout button changes modes</string>
     <string name="pref_ring_mode_title">Sound modes</string>
     <string name="pref_ring_mode_summary">Choose how the sound button changes modes</string>
-    <string name="cm_sound_mode_soundVib_vib">Sound+Vibrate/Vibrate</string>
-    <string name="cm_sound_mode_sound_vib">Sound/Vibrate</string>
-    <string name="cm_sound_mode_sound_silent">Sound/Silent</string>
-    <string name="cm_sound_mode_soundVib_vib_silent">Sound+Vib/Vib/Silent</string>
-    <string name="cm_sound_mode_sound_vib_silent">Sound/Vibrate/Silent</string>
-    <string name="cm_sound_mode_soundVib_sound_vib_silent">Sound+Vibrate/Sound/Vibrate/Silent</string>
-    <string name="cm_sound_mode_vib_silent">Vibrate/Silent</string>
+    <string name="cm_sound_mode_silent">Silent</string>
+    <string name="cm_sound_mode_vibrate">Vibrate</string>
+    <string name="cm_sound_mode_sound">Sound</string>
+    <string name="cm_sound_mode_soundVibrate">Sound+Vibrate</string>
     <string name="pref_flash_mode_title">Flash mode</string>
     <string name="pref_flash_mode_summary">Choose High / Death Ray</string>
+    <string name="expanded_haptic_feedback_title">Haptic Feedback</string>
+    <string name="expanded_haptic_feedback_summary">Enable/Disable haptic feedback.</string>
 
     <!-- User interface : LED Notifications -->
     <string name="trackball_title">LED notifications</string>

@@ -40,6 +40,8 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
 
     private static final String UI_EXP_WIDGET_HIDE_SCROLLBAR = "expanded_hide_scrollbar";
 
+    private static final String UI_EXP_WIDGET_HAPTIC_FEEDBACK = "expanded_haptic_feedback";
+
     private static final String UI_EXP_WIDGET_COLOR = "expanded_color_mask";
 
     private static final String UI_EXP_WIDGET_PICKER = "widget_picker";
@@ -57,6 +59,8 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
     private CheckBoxPreference mPowerWidgetIndicatorHide;
 
     private CheckBoxPreference mPowerWidgetHideScrollBar;
+
+    private ListPreference mPowerWidgetHapticFeedback;
 
     private Preference mPowerWidgetColor;
 
@@ -90,6 +94,9 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
                 .findPreference(UI_EXP_WIDGET_HIDE_SCROLLBAR);
         mPowerWidgetIndicatorHide = (CheckBoxPreference) prefSet
                 .findPreference(UI_EXP_WIDGET_HIDE_INDICATOR);
+        mPowerWidgetHapticFeedback = (ListPreference) prefSet
+                .findPreference(UI_EXP_WIDGET_HAPTIC_FEEDBACK);
+        mPowerWidgetHapticFeedback.setOnPreferenceChangeListener(this);
 
         mPowerWidgetColor = prefSet.findPreference(UI_EXP_WIDGET_COLOR);
         mPowerPicker = (PreferenceScreen) prefSet.findPreference(UI_EXP_WIDGET_PICKER);
@@ -103,11 +110,22 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
                 Settings.System.EXPANDED_HIDE_SCROLLBAR, 1) == 1));
         mPowerWidgetIndicatorHide.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.EXPANDED_HIDE_INDICATOR, 0) == 1));
+        mPowerWidgetHapticFeedback.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
+                Settings.System.EXPANDED_HAPTIC_FEEDBACK, 2)));
 
         int statusBarBattery = Settings.System.getInt(getContentResolver(),
                 Settings.System.BATTERY_STYLE, 0);
         mBatteryStyle.setValue(String.valueOf(statusBarBattery));
         mBatteryStyle.setOnPreferenceChangeListener(this);
+    }
+
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mPowerWidgetHapticFeedback) {
+            int intValue = Integer.parseInt((String)newValue);
+            Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_HAPTIC_FEEDBACK, intValue);
+            return true;
+        }
+        return false;
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
