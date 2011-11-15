@@ -120,19 +120,15 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
     }
 
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        if (preference == mPowerWidgetHapticFeedback) {
-            int intValue = Integer.parseInt((String)newValue);
-            Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_HAPTIC_FEEDBACK, intValue);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
         if (preference == mBatteryStyle) {
             int statusBarBattery = Integer.valueOf((String) newValue);
             Settings.System.putInt(getContentResolver(), Settings.System.BATTERY_STYLE,
                     statusBarBattery);
+            return true;
+        }
+        if (preference == mPowerWidgetHapticFeedback) {
+            int intValue = Integer.parseInt((String)newValue);
+            Settings.System.putInt(getContentResolver(), Settings.System.EXPANDED_HAPTIC_FEEDBACK, intValue);
             return true;
         }
         return false;
