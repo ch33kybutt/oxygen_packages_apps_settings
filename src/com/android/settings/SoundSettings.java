@@ -99,6 +99,9 @@ public class SoundSettings extends PreferenceActivity implements
 
     private PreferenceGroup mSoundSettings;
 
+    private static final String KEY_VOLBTN_MUSIC_CONTROLS = "volbtn_music_controls";
+    private CheckBoxPreference mVolBtnMusicControls;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -163,6 +166,9 @@ public class SoundSettings extends PreferenceActivity implements
         mTrackballScreen = (PreferenceScreen) findPreference(NOTIFICATION_TRACKBALL);
         mQuietHours = (PreferenceScreen) findPreference(QUIET_HOURS);
 
+        mVolBtnMusicControls = (CheckBoxPreference) findPreference(KEY_VOLBTN_MUSIC_CONTROLS);
+        mVolBtnMusicControls.setChecked((Settings.System.getInt(getContentResolver(),
+            Settings.System.VOLBTN_MUSIC_CONTROLS, 1) == 1));
     }
 
     @Override
@@ -327,6 +333,10 @@ public class SoundSettings extends PreferenceActivity implements
             startActivity(mTrackballScreen.getIntent());
         } else if (preference == mQuietHours) {
             startActivity(mQuietHours.getIntent());
+        } else if (preference == mVolBtnMusicControls) {
+            boolean value = mVolBtnMusicControls.isChecked();
+            Settings.System.putInt(getContentResolver(),
+                    Settings.System.VOLBTN_MUSIC_CONTROLS, value ? 1 : 0);
         }
 
         return true;

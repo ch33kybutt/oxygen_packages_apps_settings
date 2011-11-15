@@ -2802,4 +2802,9 @@ found in the list of installed applications.</string>
     <string name="title_trackball_unlock">Trackball unlock</string>
     <string name="summary_on_general_trackball_unlock">Trackball unlock will be used</string>
     <string name="summary_off_general_trackball_unlock">Trackball unlock will not be used</string>
+
+    <!-- Volume Button Music Controls -->
+    <string name="title_volbtn_music_controls">Volume button music controls</string>
+    <string name="summary_volbtn_music_controls">Seek music tracks when long-pressing the volume buttons while screen off</string>
+
 </resources>

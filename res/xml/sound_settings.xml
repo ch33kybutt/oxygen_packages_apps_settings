@@ -45,6 +45,11 @@
             android:persistent="false"
             android:streamType="ring" />
 
+    <CheckBoxPreference
+            android:key="volbtn_music_controls"
+            android:title="@string/title_volbtn_music_controls"
+            android:summary="@string/summary_volbtn_music_controls" />
+
     <PreferenceCategory
             android:title="@string/sound_category_calls_title"/>
 
