@@ -109,7 +109,7 @@ public class StatusBarActivity extends PreferenceActivity implements OnPreferenc
         mPowerWidgetHideScrollBar.setChecked((Settings.System.getInt(getContentResolver(),
                 Settings.System.EXPANDED_HIDE_SCROLLBAR, 1) == 1));
         mPowerWidgetIndicatorHide.setChecked((Settings.System.getInt(getContentResolver(),
-                Settings.System.EXPANDED_HIDE_INDICATOR, 0) == 1));
+                Settings.System.EXPANDED_HIDE_INDICATOR, 1) == 1));
         mPowerWidgetHapticFeedback.setValue(Integer.toString(Settings.System.getInt(getContentResolver(),
                 Settings.System.EXPANDED_HAPTIC_FEEDBACK, 2)));
 
